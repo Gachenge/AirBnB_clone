@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """handle file storage"""
-
-from models.base_model import BaseModel
 import json
+from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
