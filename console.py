@@ -48,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
         "Place",
         "Review"
     }
-    
+
     def do_EOF(self, line):
         """to catch the end of file and control+ D"""
         return True
@@ -59,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """overide new line to no execute anything"""
-        pass        
+        pass
 
     def do_create(self, args):
         """creates a new instance of BaseModel"""
@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
             print(eval(arg1[0])().id)
 
     def do_show(self, args):
-        """Prints the string representation of an instance based on the class name and id"""
+        """Prints the string representation of an instance"""
         arg1 = parse(args)
         obj = storage.all()
         if len(arg1) == 0:
@@ -116,7 +116,7 @@ class HBNBCommand(cmd.Cmd):
             print(ls)
 
     def do_update(self, args):
-        """updates an instance based on class name and id by adding attribute"""
+        """updates an instance based on class name and id"""
         arg = parse(args)
         obj = storage.all()
         if len(arg) == 0:
