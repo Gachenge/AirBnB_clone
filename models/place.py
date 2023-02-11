@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 from models.base_model import BaseModel
-
 """class place inherits from basemodel"""
+
+
 class Place(BaseModel):
     """has more public class attributes"""
     city_id = ""

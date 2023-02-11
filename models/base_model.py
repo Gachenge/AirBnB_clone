@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """define the base model for all other classes"""
 
-import models
 from uuid import uuid4
 from datetime import datetime
 
@@ -15,7 +14,7 @@ class BaseModel:
         created_at: first call of this should be have a time stamp
         updated_at: renewable time stamp
         """
-        
+
         if kwargs:
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
