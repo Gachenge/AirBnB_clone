@@ -1,11 +1,18 @@
 #!/usr/bin/python3
-import cmd, sys, re
+import cmd
+import sys
+import re
 from shlex import split
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
+from models.city import City
+from models.review import Review
+from models.amenity import Amenity
+from models.place import Place
 
 """class cmd is here to help us run the project from the console"""
+
 
 def parse(arg):
     """splits the arguments"""
@@ -34,7 +41,12 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     __classes = {
         "BaseModel",
-        "User"
+        "User",
+        "State",
+        "City",
+        "Amenity",
+        "Place",
+        "Review"
     }
     
     def do_EOF(self, line):
@@ -90,6 +102,37 @@ class HBNBCommand(cmd.Cmd):
         else:
             del(obj["{}.{}".format(arg[0], arg[1])])
             storage.save()
+
+    def do_all(self, args):
+        arg = parse(args)
+        obj = storage.all()
+        ls = []
+        if len(arg) > 0 and arg[0] not in self.__classes:
+            print("** class doesn't exist **")
+        else:
+            for ob in obj.values():
+                if arg[0] == ob.__class__.__name__:
+                    ls.append(ob.__str__())
+            print(ls)
+
+    def do_update(self, args):
+        """updates an instance based on class name and id by adding attribute"""
+        arg = parse(args)
+        obj = storage.all()
+        if len(arg) == 0:
+            print("** class name missing **")
+        elif arg[0] not in self.__classes:
+            print("** class doesn't exist **")
+        elif len(arg) == 1:
+            print("** instance id missing **")
+        elif "{}.{}".format(arg[0], arg[1]) not in obj:
+            print("** no instance found **")
+        elif len(arg) == 2:
+            print("** attribute name missing **")
+        elif len(arg) == 3:
+            print("** value missing **")
+        elif len(arg) == 3:
+            pass
 
 
 if __name__ == '__main__':
