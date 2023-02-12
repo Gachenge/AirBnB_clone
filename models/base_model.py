@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """define the base model for all other classes"""
 
+import models
 from uuid import uuid4
 from datetime import datetime
 

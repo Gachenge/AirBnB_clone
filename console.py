@@ -3,13 +3,14 @@ import cmd
 import sys
 import re
 from shlex import split
-from models.base_model import BaseModel
 from models import storage
+from models.base_model import BaseModel
 from models.user import User
-from models.city import City
-from models.review import Review
 from models.amenity import Amenity
+from models.city import City
 from models.place import Place
+from models.review import Review
+from models.state import State
 
 """class cmd is here to help us run the project from the console"""
 
@@ -58,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
         sys.exit(1)
 
     def emptyline(self):
-        """overide new line to no execute anything"""
+        """overide new line to not execute anything"""
         pass
 
     def do_create(self, args):
@@ -131,8 +132,6 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
         elif len(arg) == 3:
             print("** value missing **")
-        elif len(arg) == 3:
-            pass
 
 
 if __name__ == '__main__':
