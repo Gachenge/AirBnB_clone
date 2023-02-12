@@ -50,6 +50,14 @@ class TestBase(unittest.TestCase):
         with open('file.json') as f:
             self.assertIn(b.id, f.read())
 
+    def test_strfun(self):
+        a = BaseModel()
+        self.assertEqual(a.__str__(), "[BaseModel] ({}) {}".format(a.id, a.__dict__.copy()))
+
+    def test_dict(self):
+        a = BaseModel()
+        b = a.to_dict()
+        self.assertEqual(b["created_at"], b["updated_at"])
 
 if __name__ == "__main__":
     unittest.main()
