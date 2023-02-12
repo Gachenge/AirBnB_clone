@@ -42,6 +42,9 @@ class TestFile(unittest.TestCase):
         with self.assertRaises(TypeError):
             models.storage.reload(None)
 
+    def test_file_inita(self):
+        self.assertEqual(type(FileStorage()), FileStorage)
 
+ 
 if __name__ == '__main__':
     unittest.main()

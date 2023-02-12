@@ -3,6 +3,7 @@
 import unittest
 import models
 from models.base_model import BaseModel
+from datetime import datetime
 
 """Tests for the BaseModel"""
 
@@ -57,7 +58,20 @@ class TestBase(unittest.TestCase):
     def test_dict(self):
         a = BaseModel()
         b = a.to_dict()
-        self.assertEqual(b["created_at"], b["updated_at"])
+        c = BaseModel()
+        d = c.to_dict()
+        self.assertNotEqual(b["created_at"], d["created_at"])
+        self.assertNotEqual(b["updated_at"], d["updated_at"])
+
+    def test_kwargs(self):
+        a = BaseModel(id = "12345", created_at = datetime.now().isoformat(), updated_at = datetime.now().isoformat())
+        self.assertEqual(a.id, '12345')
+
+    def test_nkwargs(self):
+        with self.assertRaises(TypeError):
+            a = BaseModel(id = None, created_at = None, updated_at = None)
+
+
 
 if __name__ == "__main__":
     unittest.main()

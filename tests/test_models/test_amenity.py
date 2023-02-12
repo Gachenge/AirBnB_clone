@@ -14,3 +14,10 @@ class Amenity_testing(unittest.TestCase):
         result = pepstylecode.check_files([path_user])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
+
+    def test_name(self):
+        self.assertEqual(type(Amenity().name), str)
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -132,8 +132,17 @@ class HBNBCommand(cmd.Cmd):
         elif len(arg) == 2:
             print("** attribute name missing **")
         elif len(arg) == 3:
-            print("** value missing **")
-
+            try:
+                type(eval(arg[2])) != dict
+            except NameError:
+                print("** value missing **")
+        elif len(arg) == 4:
+            key = "{}.{}".format(arg[0], arg[1])
+            try:
+                obj[key].__dict__[arg[2]] = arg[3]
+                models.storage.save()
+            except Exception:
+                print("** no instance found **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
