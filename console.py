@@ -105,6 +105,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, args):
+        """print a list of all available instances of a class"""
         arg = parse(args)
         obj = storage.all()
         ls = []
