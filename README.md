@@ -13,7 +13,7 @@
 
 ## Description :house:
 
-HolbertonBnB is a complete web application, integrating database storage, 
+AirBnB is a complete web application, integrating database storage, 
 a back-end API, and front-end interfacing in a clone of AirBnB.
 
 The project currently only implements the back-end console.
@@ -281,4 +281,5 @@ $ python3 unittest -m tests/test_console.py
 ```
 
 ## Authors :black_nib:
-* **Michael Ndula** <[Michaelndula](https://github.com/Michaelndula)>
+* **Jeremy Kawino** <[Kawino1998](https://github.com/Kawino1998)>
+* **Victor Gachenge** <Gachenge](https://github.com/Gachenge)>
