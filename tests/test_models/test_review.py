@@ -14,3 +14,16 @@ class Review_testing(unittest.TestCase):
         result = pepstylecode.check_files([path_user])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
+
+    def test_pid(self):
+        self.assertEqual(type(Review().place_id), str)
+
+    def test_uid(self):
+        self.assertEqual(type(Review().user_id), str)
+
+    def test_text(self):
+        self.assertEqual(type(Review().text), str)
+
+
+if __name__ == "__main__":
+    unittest.main()
