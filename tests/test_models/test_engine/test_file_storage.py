@@ -52,6 +52,8 @@ class TestFile(unittest.TestCase):
     def test_rl(self):
         a = BaseModel()
         models.storage.new(a)
+        models.storage.save()
+        models.storage.reload()
         obj = FileStorage._FileStorage__objects
         self.assertIn("BaseModel." + a.id, obj)
 
