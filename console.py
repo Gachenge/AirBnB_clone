@@ -127,19 +127,25 @@ class HBNBCommand(cmd.Cmd):
         obj = storage.all()
         if len(arg) == 0:
             print("** class name missing **")
-        elif arg[0] not in self.__classes:
+            return False
+        if arg[0] not in self.__classes:
             print("** class doesn't exist **")
-        elif len(arg) == 1:
+            return False
+        if len(arg) == 1:
             print("** instance id missing **")
-        elif "{}.{}".format(arg[0], arg[1]) not in obj:
+            return False
+        if "{}.{}".format(arg[0], arg[1]) not in obj:
             print("** no instance found **")
-        elif len(arg) == 2:
+            return False
+        if len(arg) == 2:
             print("** attribute name missing **")
-        elif len(arg) == 3:
+            False
+        if len(arg) == 3:
             try:
                 type(eval(arg[2])) != dict
             except NameError:
                 print("** value missing **")
+            return False
         if len(arg) == 4:
             key = obj["{}.{}".format(arg[0], arg[1])]
             if arg[2] in key.__class__.__dict__.keys():
