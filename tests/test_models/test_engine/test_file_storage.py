@@ -43,10 +43,17 @@ class TestFile(unittest.TestCase):
             models.storage.reload(None)
 
     def test_savno(self):
-        self.assertEqual(FileStorage().save(), None) 
+        a = BaseModel()
+        models.storage.new(a)
+        models.storage.save()
+        with open("file.json") as f:
+            self.assertIn("BaseModel." + a.id, f.read())
 
-    def test_reld(self):
-        self.assertEqual(FileStorage().reload(), None)
+    def test_rl(self):
+        a = BaseModel()
+        models.storage.new(a)
+        obj = FileStorage._FileStorage__objects
+        self.assertIn("BaseModel." + a.id, obj)
 
  
 if __name__ == '__main__':
