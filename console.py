@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""engine to run our program from the console"""
 import cmd
 import sys
 import re
@@ -12,8 +13,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 
-"""class cmd is here to help us run the project from the console"""
-
+"""parse the arguments into a list"""
 
 def parse(arg):
     """splits the arguments"""
@@ -39,6 +39,7 @@ class HBNBCommand(cmd.Cmd):
     commands on the project
     We shall use our own personal prompt
     """
+    
     prompt = '(hbnb) '
     __classes = {
         "BaseModel",
