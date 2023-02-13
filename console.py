@@ -39,7 +39,7 @@ class HBNBCommand(cmd.Cmd):
     commands on the project
     We shall use our own personal prompt
     """
-    
+
     prompt = '(hbnb) '
     __classes = {
         "BaseModel",
@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
         arg1 = parse(args)
         obj = storage.all()
         if len(arg1) == 0:
-            print("** class name missing")
+            print("** class name missing **")
         elif arg1[0] not in self.__classes:
             print("** class doesn't exist **")
         elif len(arg1) == 1:
@@ -114,7 +114,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             for ob in obj.values():
-                if arg[0] == ob.__class__.__name__:
+                if len(arg) > 0 and arg[0] == ob.__class__.__name__:
+                    ls.append(ob.__str__())
+                elif len(arg) == 0:
                     ls.append(ob.__str__())
             print(ls)
 

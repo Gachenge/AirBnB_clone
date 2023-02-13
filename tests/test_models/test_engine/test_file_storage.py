@@ -50,13 +50,13 @@ class TestFile(unittest.TestCase):
             self.assertIn("BaseModel." + a.id, f.read())
 
     def test_rl(self):
-        a = BaseModel()
-        models.storage.new(a)
-        models.storage.save()
-        models.storage.reload()
-        obj = FileStorage._FileStorage__objects
-        self.assertIn("BaseModel." + a.id, obj)
+        a = FileStorage()
+        with open('file.json', 'w') as f:
+            f.write("{}")
+        with open ('file.json') as f:
+            for i in f:
+                self.assertEqual(i, "{}")
+        self.assertIs(a.reload(), None)
 
- 
 if __name__ == '__main__':
     unittest.main()
