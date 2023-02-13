@@ -15,6 +15,7 @@ from models.state import State
 
 """parse the arguments into a list"""
 
+
 def parse(arg):
     """splits the arguments"""
     brace = re.search(r"\{(.*?)\}", arg)
@@ -71,8 +72,8 @@ class HBNBCommand(cmd.Cmd):
         elif arg1[0] not in self.__classes:
             print("** class doesn't exist **")
         else:
-            storage.save()
             print(eval(arg1[0])().id)
+            storage.save()
 
     def do_show(self, args):
         """Prints the string representation of an instance"""
@@ -139,13 +140,24 @@ class HBNBCommand(cmd.Cmd):
                 type(eval(arg[2])) != dict
             except NameError:
                 print("** value missing **")
-        elif len(arg) == 4:
-            key = "{}.{}".format(arg[0], arg[1])
-            try:
-                obj[key].__dict__[arg[2]] = arg[3]
-                models.storage.save()
-            except Exception:
-                print("** no instance found **")
+        if len(arg) == 4:
+            key = obj["{}.{}".format(arg[0], arg[1])]
+            if arg[2] in key.__class__.__dict__.keys():
+                valtp = type(key.__class__.__dict__[arg[2]])
+                key.__dict__[arg[2]] = valtp(arg[3])
+            else:
+                key.__dict__[arg[2]] = arg[3]
+        elif type(eval(arg[2])) == dict:
+            key = obj["{}.{}".format(arg[0], arg[1])]
+            for ke, val in eval(arg[2]).items():
+                if (ke in key.__class__.__dict__.keys() and
+                   type(key.__class__.__dict__[ke] in [str, int, float])):
+                    valtp = type(key.__class__.__dict__[ke])
+                    obj.__dit__[ke] = valtp(val)
+                else:
+                    key.__dict__[ke] = val
+
+        storage.save()
 
 
 if __name__ == '__main__':
