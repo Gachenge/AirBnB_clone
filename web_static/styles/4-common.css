@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     display:flex;
     flex-direction: column;
@@ -17,3 +18,17 @@ body {
     padding-text-align: center;
     padding-left:  10px;
 }
+=======
+body{
+    margin: 0;
+    padding: 0;
+    color: #484848;
+    font-size: 14px;
+    font: 14px Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.container{
+    max-width: 1000px;
+    margin: 30px auto;
+}
+>>>>>>> f64ff389d919fa68bfa40581e2b5866e07bfe00d
